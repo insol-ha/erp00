@@ -1,0 +1,338 @@
+<script src="${path}/a00_com/jquery.min.js"></script>
+<script src="${path}/a00_com/popper.min.js"></script>
+<script src="${path}/a00_com/bootstrap.min.js"></script>
+<script src="${path}/a00_com/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script
+	src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api"
+	type="text/javascript"></script>
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<fmt:requestEncoding value="utf-8" />
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<style type="text/css">
+.bg-gradient-primary {
+	background-color: #a85c00 !important;
+	background-image: linear-gradient(0deg, #F0E68C, #7B3F00) !important;
+	background-size: cover !important;
+}
+
+.input-group-text {
+	width: 100%;
+	background-color: linen;
+	color: black;
+	font-weight: bolder;
+}
+
+.input-group-prepend {
+	width: 10%;
+}
+
+#textarea {
+	width: 90%;
+	resize: none;
+}
+</style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>SB Admin 2 - Dashboard</title>
+
+<!-- Custom fonts for this template-->
+<link href="a00_com/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="a00_com/css/sb-admin-2.min.css" rel="stylesheet">
+
+<script src="a00_com/vendor/jquery/jquery.min.js"></script>
+</head>
+
+<body id="page-top">
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul
+			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+			id="accordionSidebar">
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				href="/main">
+				<div class="sidebar-brand-icon rotate-n-15">
+					<img src="http://localhost:3030/upload/coffeehouse.png"
+						style="max-width: 150%; height: auto;" alt="" />
+				</div>
+				<div class="sidebar-brand-text mx-3">CoffeeHouse</div>
+			</a>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider my-0">
+
+			<!-- Nav Item - Dashboard -->
+			<li class="nav-item"><a class="nav-link" href="/main"> <i
+					class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+
+			<!-- Heading -->
+
+			<!-- Heading -->
+			<div class="sidebar-heading">Addons</div>
+
+			<!-- Nav Item - Pages Collapse Menu -->
+
+
+			<!-- Nav Item - Tables -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#empPages" aria-expanded="true"
+				aria-controls="collapsePages"> <i class="fas fa-fw fa-folder"></i>
+					<span>인사관리</span>
+			</a>
+				<div id="empPages" class="collapse" aria-labelledby="headingPages"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">사원정보:</h6>
+						<a class="collapse-item" href="/erpEmpList">사원정보</a> <a
+							class="collapse-item" href="/erpProfile">프로필</a> <a
+							class="collapse-item" href="/CalList">직원 출결 내역</a> <a
+							class="collapse-item" href="/LeaveMngt">직원 연차 사용 현황</a> <a
+							class="collapse-item" href="/calcul2">급여 계산기</a>
+					</div>
+				</div></li>
+
+
+			<!-- 판매관리 -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#jepumgwanli"
+				aria-expanded="true" aria-controls="collapsePages"> <i
+					class="fas fa-fw fa-folder"></i> <span>제품관리</span>
+			</a>
+				<div id="jepumgwanli" class="collapse"
+					aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<h6 class="collapse-header">재고관리:</h6>
+							<a class="collapse-item" href="/boardList">입출고목록</a> <a
+								class="collapse-item" href="/chatting">원자재관리</a> <a
+								class="collapse-item" href="/sendMail">재고리스트</a>
+						</div>
+					</div>
+				</div></li>
+
+			<!-- 판매관리 -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#panmaegwanli"
+				aria-expanded="true" aria-controls="collapsePages"> <i
+					class="fas fa-fw fa-folder"></i> <span>판매관리</span>
+			</a>
+				<div id="panmaegwanli" class="collapse"
+					aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<h6 class="collapse-header">실적관리:</h6>
+							<a class="collapse-item" href="/boardList">지역별 실적</a> <a
+								class="collapse-item" s href="/chatting">직원별 실적</a>
+						</div>
+					</div>
+				</div></li>
+
+
+
+			<!-- 커뮤니케이션(부가기능) -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#communicare"
+				aria-expanded="true" aria-controls="collapsePages"> <i
+					class="fas fa-fw fa-folder"></i> <span>커뮤니케이션</span>
+			</a>
+				<div id="communicare" class="collapse"
+					aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<h6 class="collapse-header">커뮤니케이션:</h6>
+							<a class="collapse-item" href="/boardList">일정공지사항</a> <a
+								class="collapse-item" href="/chatting">채팅</a> <a
+								class="collapse-item" href="/sendMail">메일</a>
+						</div>
+					</div>
+				</div></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider d-none d-md-block">
+
+			<!-- Sidebar Toggler (Sidebar) -->
+			<div class="text-center d-none d-md-inline">
+				<button class="rounded-circle border-0" id="sidebarToggle"></button>
+			</div>
+
+		</ul>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<!-- 	<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+					Sidebar Toggle (Topbar)
+					Topbar Search
+
+				</nav> -->
+				<!-- End of Topbar -->
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid" id="vueCon">
+
+					<!-- Page Heading -->
+
+					<br> <br> 
+					
+					<!-- DataTales Example -->
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">메일</h6>
+						</div>
+
+						<div class="jumbotron text-center">
+							<h2>coffeehouse mail</h2>
+						</div>
+					
+					<div class="container">
+						<form method="post">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend ">
+									<span class="input-group-text  justify-content-center">수신자</span>
+								</div>
+								<input name="receiver" class="form-control" value="" />
+							</div>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend ">
+									<span class="input-group-text  justify-content-center">발신자</span>
+								</div>
+								<input name="sender" class="form-control"
+									value="coffeehouse@example.com" readonly />
+							</div>
+							<!--  receiver  sender   title content -->
+							<div class="input-group mb-3">
+								<div class="input-group-prepend ">
+									<span class="input-group-text  justify-content-center">제목</span>
+								</div>
+								<input name="title" class="form-control" value="" />
+							</div>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend ">
+									<span class="input-group-text  justify-content-center">내용</span>
+								</div>
+
+								<textarea name="content" rows="10" id="textarea"></textarea>
+							</div>
+							<div style="text-align: right;">
+								<input type="button" class="btn btn-info"
+									onclick="location.href='main'" value="메인화면으로..." id="mainBtn" />
+
+								<input type="button" class="btn btn-primary" value="메일발송"
+									id="sendBtn" />
+							</div>
+						</form>
+						</div>
+						<script type="text/javascript">
+							$("#sendBtn").click(function() {
+								if (confirm("메일 발송하시겠습니까?")) {
+									$.ajax({
+										url : "sendMail",
+										type : "post",
+										data : $("form").serialize(),
+										success : function(msg) {
+											alert(msg)
+											if (msg.indexOf("성공") >= 0) {
+												$("form")[0].reset()
+											}
+										},
+										error : function(err) {
+											console.log(err)
+										}
+									})
+								}
+							})
+						</script>
+
+
+
+
+					</div>
+					<footer class="sticky-footer bg-white">
+						<div class="container my-auto">
+							<div class="copyright text-center my-auto">
+								<span>Copyright &copy; Your Website 2021</span>
+							</div>
+						</div>
+					</footer>
+					<!-- End of Footer -->
+				</div>
+				<!-- End of Content Wrapper -->
+
+			</div>
+			<!-- End of Page Wrapper -->
+			<!-- Scroll to Top Button-->
+			<a class="scroll-to-top rounded" href="#page-top"> <i
+				class="fas fa-angle-up"></i>
+			</a>
+
+
+			<!-- Bootstrap core JavaScript-->
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$("#regBtn").click(function() {
+						location.href = "boardInsert"
+					})
+					$("#pageSize").val("${sch.pageSize}")
+					$("#schBtn").click(function() {
+						$("[name=curPage]").val(1)
+						$("form").submit();
+					})
+				});
+				function goDetail(no) {
+					location.href = "boardDetail?no=" + no
+				}
+				function goPage(pcnt) {
+					$("[name=curPage]").val(pcnt) // 클릭한 번호를 현재 페이지로 설정하고..
+					$("form").submit() // 요청값으로 전송 처리..
+				}
+				function uptPageSize() {
+					$("[name=pageSize]").val($("#pageSize").val())
+					$("[name=curPage]").val(1)
+					$("form").submit();
+				}
+			</script>
+			<!-- Bootstrap core JavaScript-->
+			<script src="a00_com/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+			<!-- Core plugin JavaScript-->
+			<script src="a00_com/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+			<!-- Custom scripts for all pages-->
+			<script src="a00_com/js/sb-admin-2.min.js"></script>
+
+			<!-- Page level plugins -->
+			<script src="a00_com/vendor/datatables/jquery.dataTables.min.js"></script>
+			<script src="a00_com/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+			<!-- Page level custom scripts -->
+			<script src="a00_com/js/demo/datatables-demo.js"></script>
+			<script src="https://unpkg.com/vue" type="text/javascript"></script>
+			<script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>
